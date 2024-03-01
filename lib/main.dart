@@ -4,25 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:locale_app/cubit/locale_cubit.dart';
 import 'home_page.dart';
 
+String lang = 'en';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(BlocProvider(
-      create: (context) => LocaleCubit(),
-      child: BlocBuilder<LocaleCubit, ChangeLocaleState>(builder: (context, state) {
-        print('current locale is ${state.locale}');
-        return EasyLocalization(
-          supportedLocales: const [
-            Locale('ar'),
-            Locale('en'),
-          ],
-          path: "assets/translations",
-          fallbackLocale: state.locale,
-          startLocale: state.locale,
-          saveLocale: true,
-          child: const MyApp(),
-        );
-      })));
+  runApp(BlocProvider(create: (context) {
+    return LocaleCubit();
+  }, child: BlocBuilder<LocaleCubit, ChangeLocaleState>(builder: (context, state) {
+    return EasyLocalization(
+      key: GlobalKey(),
+      supportedLocales: const [
+        Locale('ar'),
+        Locale('en'),
+      ],
+      path: "assets/translations",
+      fallbackLocale: Locale(state.locale),
+      startLocale: Locale(state.locale),
+      child: const MyApp(),
+    );
+  })));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           supportedLocales: context.supportedLocales,
           localizationsDelegates: context.localizationDelegates,
-          locale: state.locale,
+          locale: Locale(state.locale),
           debugShowCheckedModeBanner: false,
           home: const HomePage(),
         );

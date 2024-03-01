@@ -16,8 +16,7 @@ class HomePage extends StatelessWidget {
               icon: const Icon(Icons.settings))
         ],
       ),
-      drawer: const Drawer(),
-      body: Center(
+       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -31,10 +30,6 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }
