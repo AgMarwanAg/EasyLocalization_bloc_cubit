@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("عنوان".tr()),
+        title: Text("title".tr()),
         actions: [
           IconButton(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SettingsPage())),
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "تمام".tr(),
+                "ok".tr(),
                 style: const TextStyle(fontSize: 25),
                 textAlign: TextAlign.center,
               ),

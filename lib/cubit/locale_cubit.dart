@@ -5,7 +5,7 @@ import 'package:locale_app/language_cache_helper.dart';
 part 'locale_state.dart';
 
 class LocaleCubit extends Cubit<ChangeLocaleState> {
-  LocaleCubit() : super(ChangeLocaleState(locale: const Locale('en')));
+  LocaleCubit() : super(ChangeLocaleState(locale: const Locale('ar')));
 
   // Future<void> getSavedLanguage() async {
   //   final String cachedLanguageCode =
@@ -14,8 +14,7 @@ class LocaleCubit extends Cubit<ChangeLocaleState> {
   //   emit(ChangeLocaleState(locale: Locale(cachedLanguageCode)));
   // }
 
-  Future<void> changeLanguage(String languageCode) async {
-    // await LanguageCacheHelper().cacheLanguageCode(languageCode);
-    emit(ChangeLocaleState(locale: Locale(languageCode)));
-  }
+  Future<void> changeLanguage(Locale languageCode) async {
+     emit(ChangeLocaleState(locale: languageCode));
+   }
 }

@@ -7,7 +7,22 @@ import 'home_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+      create: (context) => LocaleCubit(),
+      child: BlocBuilder<LocaleCubit, ChangeLocaleState>(builder: (context, state) {
+        print('current locale is ${state.locale}');
+        return EasyLocalization(
+          supportedLocales: const [
+            Locale('ar'),
+            Locale('en'),
+          ],
+          path: "assets/translations",
+          fallbackLocale: state.locale,
+          startLocale: state.locale,
+          saveLocale: true,
+          child: const MyApp(),
+        );
+      })));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,32 +30,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => LocaleCubit(),
-        ),
-      ],
-      child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
-        builder: (context, state) {
-          return EasyLocalization(
-            supportedLocales: const [
-              Locale('en'),
-              Locale('ar'),
-            ],
-            path: "assets/lang",
-            fallbackLocale: state.locale,
-            startLocale: state.locale,
-            saveLocale: false,
-            child: MaterialApp(
-              locale: state.locale,
-              supportedLocales: const [Locale('en'), Locale('ar')],
-              debugShowCheckedModeBanner: false,
-              home: const HomePage(),
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<LocaleCubit, ChangeLocaleState>(
+      builder: (context, state) {
+        return MaterialApp(
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
+          locale: state.locale,
+          debugShowCheckedModeBanner: false,
+          home: const HomePage(),
+        );
+      },
     );
   }
 }
