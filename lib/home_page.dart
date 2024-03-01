@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'app_localizations.dart';
 import 'settings_page.dart';
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("عنوان".tr(context)),
+        title: Text("عنوان".tr()),
         actions: [
           IconButton(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SettingsPage())),
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "تمام".tr(context),
+                "تمام".tr(),
                 style: const TextStyle(fontSize: 25),
                 textAlign: TextAlign.center,
               ),
