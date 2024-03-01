@@ -1,20 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:locale_app/c.dart';
 import 'package:locale_app/language_cache_helper.dart';
 
 part 'locale_state.dart';
 
 class LocaleCubit extends Cubit<ChangeLocaleState> {
-  LocaleCubit() : super(ChangeLocaleState(locale: const Locale('ar')));
+  LocaleCubit() : super(ChangeLocaleState(locale: const Locale('en')));
 
-  // Future<void> getSavedLanguage() async {
-  //   final String cachedLanguageCode =
-  //       await LanguageCacheHelper().getCachedLanguageCode();
+  Future<void> getSavedLanguage() async {
+    final String cachedLanguageCode =
+        await LanguageCacheHelper().getCachedLanguageCode();
 
-  //   emit(ChangeLocaleState(locale: Locale(cachedLanguageCode)));
-  // }
+    emit(ChangeLocaleState(locale: Locale(cachedLanguageCode)));
+  }
 
-  Future<void> changeLanguage(Locale languageCode) async {
-     emit(ChangeLocaleState(locale: languageCode));
-   }
+  Future<void> changeLanguage(String languageCode) async {
+   final String cachedLanguageCode = await LanguageCacheHelper().getCachedLanguageCode();
+    emit(ChangeLocaleState(locale: Locale(cachedLanguageCode)));
+  }
 }

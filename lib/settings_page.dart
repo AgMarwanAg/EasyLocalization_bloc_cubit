@@ -20,7 +20,7 @@ class SettingsPage extends StatelessWidget {
               builder: (context, state) {
                 return ElevatedButton(
                     onPressed: () {
-                      context.read<LocaleCubit>().changeLanguage(const Locale('ar'));
+                      context.read<LocaleCubit>().changeLanguage('ar');
                     },
                     child: const Text('ar'));
                 // DropdownButton<String>(

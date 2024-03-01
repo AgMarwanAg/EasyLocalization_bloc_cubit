@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'app_localizations.dart';
 import 'settings_page.dart';
 
 class HomePage extends StatelessWidget {
