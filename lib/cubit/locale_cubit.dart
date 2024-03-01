@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:locale_app/main.dart';
 
 part 'locale_state.dart';
